@@ -104,7 +104,7 @@ function orderValidation() {
 }
 
 const newItem = async () => {
-    const request = await fetch(`http://localhost:8080/items`, {
+    const request = await fetch(`https://bfd-api.herokuapp.com/items`, {
         
         method: "POST",
         Headers: {
@@ -130,7 +130,7 @@ const newItem = async () => {
 }
 
 const newOrder = async () => {
-    const request = await fetch(`http://localhost:8080/pallets`, {
+    const request = await fetch(`https://bfd-api.herokuapp.com/pallets`, {
         method: "POST",
         headers: {
             Accept: 'application.json',
@@ -151,13 +151,13 @@ const newOrder = async () => {
 }
 
 const activePallets = async () => {
-    const request = await fetch('http://localhost:8080/pallets')
+    const request = await fetch('https://bfd-api.herokuapp.com/pallets')
     const data = await request.json()
     return data
 }
 
 const itemsInPallet = async (palletId) => {
-    const request = await fetch(`http://localhost:8080/items/pallet/${palletId}`)
+    const request = await fetch(`https://bfd-api.herokuapp.com/items/pallet/${palletId}`)
     const data = await request.json()
     return data
 }
@@ -208,7 +208,7 @@ const populateCategories = async () => {
 }
 
 const getPalletsDropdown = async () => {
-    const request = await fetch('http://localhost:8080/pallets/dropdown')
+    const request = await fetch('https://bfd-api.herokuapp.com/pallets/dropdown')
     const data = await request.json()
     return data
 }
@@ -231,7 +231,7 @@ const populateDropdowns = async () => {
     }
 
 const getCategoriesDropdown = async () => {
-    const request = await fetch(`http://localhost:8080/categories/dropdown`)
+    const request = await fetch(`https://bfd-api.herokuapp.com/categories/dropdown`)
     const data = await request.json()
     return data
 }
@@ -258,7 +258,7 @@ function totalSoldItems(items) {
 }
 
 const newCategory = async () => {
-    const request = await fetch(`http://localhost:8080/categories`, {
+    const request = await fetch(`https://bfd-api.herokuapp.com/categories`, {
         
         method: "POST",
         Headers: {

@@ -29,7 +29,7 @@ $(document).ready(function() {
 })
 
 const editItem = async (itemId) => {
-    const request = await fetch(`http://localhost:8080/items/${itemId}`, {
+    const request = await fetch(`https://bfd-api.herokuapp.com/items/${itemId}`, {
         method: "PUT",
         Headers: {
             Accept: 'application.json',
@@ -68,19 +68,19 @@ function validateForm() {
 }
 
 const getItem = async (itemId) => {
-    const request = await fetch(`http://localhost:8080/items/${itemId}`)
+    const request = await fetch(`https://bfd-api.herokuapp.com/items/${itemId}`)
     const data = await request.json()
     return data
 }
 
 const itemsInPallet = async (palletId) => {
-    const request = await fetch(`http://localhost:8080/items/pallet/${palletId}`)
+    const request = await fetch(`https://bfd-api.herokuapp.com/items/pallet/${palletId}`)
     const data = await request.json()
     return data
 }
 
 const getPallet = async (palletId) => {
-    const request = await fetch(`http://localhost:8080/pallets/${palletId}`)
+    const request = await fetch(`https://bfd-api.herokuapp.com/pallets/${palletId}`)
     const data = await request.json()
     return data
 }
@@ -118,7 +118,7 @@ async function populateFormDropdowns() {
 }
 
 const getCategoriesDropdown = async () => {
-    const request = await fetch(`http://localhost:8080/categories/dropdown`)
+    const request = await fetch(`https://bfd-api.herokuapp.com/categories/dropdown`)
     const data = await request.json()
     return data
 }
