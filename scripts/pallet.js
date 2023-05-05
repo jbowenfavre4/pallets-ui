@@ -127,6 +127,7 @@ const getCategoriesDropdown = async () => {
 }
 
 async function populateForm(itemId) {
+    clearForm()
     let itemData = await getItem(itemId) // get current item information to populate form
     let item = itemData[0]
     $('#editItemName').val(item.itemName)
@@ -134,13 +135,31 @@ async function populateForm(itemId) {
     $('#editItemPrice').val(item.itemPrice)
     $('#editItemSold').val(item.sold)
     $('#editCategory').val(item.category)
-    $('#editSellDate').val(item.sellDate.split('T')[0])
     $('#editSellPrice').val(item.sellPrice)
     $('#editPlatform').val(item.platform)
     $('#idNumber').html(`${item.itemId}`)
     $('#palletIdNumber').html(`${item.palletId}`)
     $('#editShippingCost').val(item.shippingCost)
-    $('#editListDate').val(item.listDate.split('T')[0])
     $('#editMiscExpenses').val(item.miscExpenses)
+    if (item.sellDate != null && item.sellDate != '1899-11-30T07:00:00.000Z') {
+        $('#editSellDate').val(item.sellDate.split('T')[0])
+    }
+    if (item.listDate != null && item.ListDate != '1899-11-30T07:00:00.000Z') {
+        $('#editListDate').val(item.listDate.split('T')[0])
+    }
 } 
+
+function clearForm() {
+    $('#editItemName').val('')
+    $('#editItemDescription').val('')
+    $('#editItemPrice').val('')
+    $('#editItemSold').val('')
+    $('#editCategory').val('')
+    $('#editSellPrice').val('')
+    $('#editPlatform').val('')
+    $('#editShippingCost').val('')
+    $('#editMiscExpenses').val('')
+    $('#editSellDate').val('')
+    $('#editListDate').val('')
+}
 

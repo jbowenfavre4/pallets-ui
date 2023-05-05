@@ -113,14 +113,14 @@ const newItem = async () => {
           },
         body: JSON.stringify({
             "itemName": `${$('#itemName').val()}`,
-            "itemDescription": `temporary`,
+            "itemDescription": null,
             "palletId": `${$('#palletNum').val()}`,
             "itemPrice": `${$('#retailPrice').val()}`,
             "sold": false,
             "category": `${$('#itemCategory').val()}`,
             "sellDate": null,
             "sellPrice": null,
-            "platform": 'temporary'
+            "platform": null
         }),
         headers: {"Content-type": "application/json; charset=UTF-8"}
     })
@@ -170,10 +170,10 @@ const populateDashboard = async () => {
         let items = await itemsInPallet(pallet.palletId)
         let palletProfit = Math.round((totalSoldItems(items) - Number(pallet.purchasePrice)) * 100) / 100
         $palletsContainer.append(
-            `<div class="border row my-3 pallet-row" data-pid="${pallet.palletId}">
+            `<div class="border row py-3 pallet-row" data-pid="${pallet.palletId}">
                 <div class="col-3">${pallet.palletName}</div>
                 <div class="col-2 d-flex justify-content-center">$${pallet.purchasePrice}</div>
-                <div class="col-2 d-flex justify-content-center">${(pallet.purchaseDate)}</div>
+                <div class="col-2 d-flex justify-content-center">${(pallet.purchaseDate.split('T')[0])}</div>
                 <div class="col-2 d-flex justify-content-center">${countSoldItems(items)}/${items.length} items sold</div>
                 <div class="col-3 d-flex justify-content-center ${palletProfit > 0 ? 'profit-green': 'profit-red'}">$${palletProfit}
             </div>`
