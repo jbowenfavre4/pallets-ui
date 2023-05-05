@@ -73,6 +73,7 @@ function clearItemInputs() {
     $('#itemName').val('')
     $('#itemQty').val('')
     $('#retailPrice').val('')
+    $('#itemDescription').val('')
 }
 
 function itemValidation() {
@@ -84,7 +85,10 @@ function itemValidation() {
         errorText += 'Item quantity must be at least one.\n'
     } 
     if ($('#retailPrice').val() <= 0) {
-        errorText += 'Item price must be greater than 0.'
+        errorText += 'Item price must be greater than 0.\n'
+    }
+    if ($('#itemDescription').val() == '') {
+        errorText += 'Item description is required.\n'
     }
     return errorText
 }
@@ -113,7 +117,7 @@ const newItem = async () => {
           },
         body: JSON.stringify({
             "itemName": `${$('#itemName').val()}`,
-            "itemDescription": null,
+            "itemDescription": `${$('#itemDescription').val()}`,
             "palletId": `${$('#palletNum').val()}`,
             "itemPrice": `${$('#retailPrice').val()}`,
             "sold": false,
