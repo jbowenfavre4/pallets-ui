@@ -44,7 +44,10 @@ const editItem = async (itemId) => {
             "category": `${$('#editCategory').val()}`,
             "sellDate": `${$('#editSellDate').val()}`,
             "sellPrice": `${$('#editSellPrice').val()}`,
-            "platform": `${$('#editPlatform').val()}`
+            "platform": `${$('#editPlatform').val()}`,
+            "shippingCost": `${$('#editShippingCost').val()}`,
+            "miscExpenses": `${$('#editMiscExpenses').val()}`,
+            "listDate": `${$('#editListDate').val()}`
         }),
         headers: {"Content-type": "application/json; charset=UTF-8"}
     })
@@ -96,7 +99,7 @@ async function populatePage() {
                 <div class="col-3">${item.itemDescription}</div>
                 <div class="col-1">${item.itemPrice}</div>
                 <div class="col-1">${item.sellPrice && item.sellPrice != 0 ? item.sellPrice : '-'}</div>
-                <div class="col-2">${item.sellDate != null && item.sellDate != '1899-11-30T07:00:00.000Z' ? item.sellDate : '-'}</div>
+                <div class="col-2">${item.sellDate != null && item.sellDate != '1899-11-30T07:00:00.000Z' ? item.sellDate.split('T')[0] : '-'}</div>
                 <div class="col-2">${item.platform != null ? item.platform : '-'}</div>
                 <div class="col-1"><i class=" editItemBtn fa-regular fa-pen-to-square edit-item" data-bs-toggle="modal" data-bs-target="#myModal" data-itemId="${item.itemId}"></i></div>
             </div>
@@ -124,17 +127,20 @@ const getCategoriesDropdown = async () => {
 }
 
 async function populateForm(itemId) {
-    let itemData = await getItem(itemId)
+    let itemData = await getItem(itemId) // get current item information to populate form
     let item = itemData[0]
     $('#editItemName').val(item.itemName)
     $('#editItemDescription').val(item.itemDescription)
     $('#editItemPrice').val(item.itemPrice)
     $('#editItemSold').val(item.sold)
     $('#editCategory').val(item.category)
-    $('#editSellDate').val(item.sellDate)
+    $('#editSellDate').val(item.sellDate.split('T')[0])
     $('#editSellPrice').val(item.sellPrice)
     $('#editPlatform').val(item.platform)
     $('#idNumber').html(`${item.itemId}`)
     $('#palletIdNumber').html(`${item.palletId}`)
+    $('#editShippingCost').val(item.shippingCost)
+    $('#editListDate').val(item.listDate.split('T')[0])
+    $('#editMiscExpenses').val(item.miscExpenses)
 } 
 
