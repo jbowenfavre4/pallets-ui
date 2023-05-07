@@ -204,7 +204,7 @@ const populateDashboard = async () => {
         window.location.href = `pallet.html?${$(this).attr('data-pid')}`
     })
 
-    $('#profitNumber').html(Math.round(totalProfit * 100) / 100)
+    $('#profitSpan').html(`$${totalProfit}`)
     $('#profitSpan').css('color', ((totalProfit > 0) ? 'green' : 'red'))
 }
 

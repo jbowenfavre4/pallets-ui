@@ -42,7 +42,13 @@
               </ul>
               <p>Click on a pallet to get more details and view the items. </p>
               <div id="profitSummary" class="row">
-                <h3>Total profit: <span id="profitSpan">$<span id="profitNumber"></span></span></h3>
+                <h3>Total profit: 
+                  <span id="profitSpan">
+                  <div class="spinner-border profit-spinner" style="width: 2rem; height: 2rem;" role="status">
+                    <span class="sr-only"></span>
+                  </div>
+                </span>
+              </h3>
               </div>
             </div>
             <div id="categories" class="container tab-pane fade"><br>

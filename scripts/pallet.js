@@ -91,7 +91,7 @@ const getPallet = async (palletId) => {
 async function populatePage() {
     let palletInfo = await getPallet(palletId)
     let items = await itemsInPallet(palletId)
-    $('#palletTitle').html(palletInfo.palletName)
+    $('#palletTitle').html(`<h1>${palletInfo.palletName}</h1>`)
     for (let item of items) {
         $('#itemList').append(`
             <div class="row border p-3 item-row ${item.sold ? 'item-row-bought' : ''}">
