@@ -189,7 +189,7 @@ const populateDashboard = async () => {
                 <div class="col-3 d-flex justify-content-center ${palletProfit > 0 ? 'profit-green': 'profit-red'}">$${palletProfit}
             </div>`
         )
-        totalProfit += Math.round((totalSoldItems(items) - pallet.purchasePrice) * 100)/100
+        totalProfit += palletProfit
     }
 
     $('.pallet-row').hover(function() {
