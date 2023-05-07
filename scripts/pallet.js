@@ -89,11 +89,12 @@ const getPallet = async (palletId) => {
 }
 
 async function populatePage() {
+    let itemList = ''
     let palletInfo = await getPallet(palletId)
     let items = await itemsInPallet(palletId)
     $('#palletTitle').html(`<h1>${palletInfo.palletName}</h1>`)
     for (let item of items) {
-        $('#itemList').append(`
+        itemList += `
             <div class="row border p-3 item-row ${item.sold ? 'item-row-bought' : ''}">
                 <div class="col-2">${item.itemName}</div>
                 <div class="col-3">${item.itemDescription}</div>
@@ -102,9 +103,9 @@ async function populatePage() {
                 <div class="col-2">${item.sellDate != null && item.sellDate != '1899-11-30T07:00:00.000Z' ? item.sellDate.split('T')[0] : '-'}</div>
                 <div class="col-2">${item.platform != null ? item.platform : '-'}</div>
                 <div class="col-1"><i class=" editItemBtn fa-regular fa-pen-to-square edit-item" data-bs-toggle="modal" data-bs-target="#myModal" data-itemId="${item.itemId}"></i></div>
-            </div>
-        `)
+            </div>`
     }
+    $('#itemList').html(itemList)
     $('.editItemBtn').click(function() {
         populateForm($(this).attr('data-itemId'))
     })
