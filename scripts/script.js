@@ -173,6 +173,7 @@ const getPalletProfit = async (palletId) => {
 }
 
 const populateDashboard = async () => {
+    let palletsList = ''
     let totalProfit = 0
     let $palletsContainer = $('#palletsContainer')
     let pallets = await activePallets()
@@ -180,17 +181,17 @@ const populateDashboard = async () => {
         let items = await itemsInPallet(pallet.palletId)
         let palletProfitResponse = await getPalletProfit(pallet.palletId)
         let palletProfit = palletProfitResponse.palletProfit
-        $palletsContainer.append(
+        palletsList +=
             `<div class="border row py-3 pallet-row" data-pid="${pallet.palletId}">
                 <div class="col-3">${pallet.palletName}</div>
                 <div class="col-2 d-flex justify-content-center">$${pallet.purchasePrice}</div>
                 <div class="col-2 d-flex justify-content-center">${(pallet.purchaseDate.split('T')[0])}</div>
                 <div class="col-2 d-flex justify-content-center">${countSoldItems(items)}/${items.length} items sold</div>
-                <div class="col-3 d-flex justify-content-center ${palletProfit > 0 ? 'profit-green': 'profit-red'}">$${palletProfit}
+                <div class="col-3 d-flex justify-content-center ${palletProfit > 0 ? 'profit-green': 'profit-red'}">$${palletProfit}</div>
             </div>`
-        )
         totalProfit += palletProfit
     }
+    $palletsContainer.html(palletsList)
 
     $('.pallet-row').hover(function() {
         $(this).css('background-color', 'lightblue')                                               

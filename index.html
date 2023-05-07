@@ -31,13 +31,18 @@
         <div class="tab-content">
             <div id="dashboard" class="container tab-pane active"><br>
               <h3 class="d-flex justify-content-center">Orders</h3>
+              <div class="row my-3">
+                <div class="col-3 d-flex justify-content-center">Pallet name</div>
+                <div class="col-2 d-flex justify-content-center">Purchase price</div>
+                <div class="col-2 d-flex justify-content-center">Purchase date</div>
+                <div class="col-2 d-flex justify-content-center">% sold</div>
+                <div class="col-sm-3 d-flex justify-content-center">Profit</div>
+              </div>
               <ul id="palletsContainer">
-                <div class="row mt-3">
-                  <div class="col-3 d-flex justify-content-center">Pallet name</div>
-                  <div class="col-2 d-flex justify-content-center">Purchase price</div>
-                  <div class="col-2 d-flex justify-content-center">Purchase date</div>
-                  <div class="col-2 d-flex justify-content-center">% sold</div>
-                  <div class="col-sm-3 d-flex justify-content-center">Profit</div>
+                <div class="d-flex my-5 justify-content-center">
+                  <div class="spinner-border" style="width: 5rem; height: 5rem;" role="status">
+                    <span class="sr-only"></span>
+                  </div>
                 </div>
               </ul>
               <p>Click on a pallet to get more details and view the items. </p>
