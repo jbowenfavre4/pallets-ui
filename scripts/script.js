@@ -166,13 +166,20 @@ const itemsInPallet = async (palletId) => {
     return data
 }
 
+const getPalletProfit = async (palletId) => {
+    const request = await fetch(`https://palletsapi.onrender.com/pallets/profit/${palletId}`)
+    const data = await request.json()
+    return data
+}
+
 const populateDashboard = async () => {
     let totalProfit = 0
     let $palletsContainer = $('#palletsContainer')
     let pallets = await activePallets()
     for (let pallet of pallets) {
         let items = await itemsInPallet(pallet.palletId)
-        let palletProfit = Math.round((totalSoldItems(items) - Number(pallet.purchasePrice)) * 100) / 100
+        let palletProfitResponse = await getPalletProfit(pallet.palletId)
+        let palletProfit = palletProfitResponse.palletProfit
         $palletsContainer.append(
             `<div class="border row py-3 pallet-row" data-pid="${pallet.palletId}">
                 <div class="col-3">${pallet.palletName}</div>
