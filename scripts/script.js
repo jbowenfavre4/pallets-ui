@@ -172,9 +172,14 @@ const getPalletProfit = async (palletId) => {
     return data
 }
 
+const getTotalProfit = async () => {
+    const request = await fetch(`https://palletsapi.onrender.com/pallets/totalProfit`)
+    const data = await request.json()
+    return data.totalProfit
+}
+
 const populateDashboard = async () => {
     let palletsList = ''
-    let totalProfit = 0
     let $palletsContainer = $('#palletsContainer')
     let pallets = await activePallets()
     for (let pallet of pallets) {
@@ -189,7 +194,6 @@ const populateDashboard = async () => {
                 <div class="col-2 d-flex justify-content-center">${countSoldItems(items)}/${items.length} items sold</div>
                 <div class="col-3 d-flex justify-content-center ${palletProfit > 0 ? 'profit-green': 'profit-red'}">$${palletProfit}</div>
             </div>`
-        totalProfit += palletProfit
     }
     $palletsContainer.html(palletsList)
 
@@ -205,6 +209,8 @@ const populateDashboard = async () => {
         window.location.href = `pallet.html?${$(this).attr('data-pid')}`
     })
 
+    let totalProfit = await getTotalProfit()
+    console.log(totalProfit)
     $('#profitSpan').html(`$${totalProfit}`)
     $('#profitSpan').css('color', ((totalProfit > 0) ? 'green' : 'red'))
 }
