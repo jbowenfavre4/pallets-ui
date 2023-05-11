@@ -13,17 +13,33 @@
 <body>
     <div class="container mt-5">
         <div class="row">
-            <div class="col-6" id="palletTitle">
+            <div class="col-10" id="palletTitle">
                 <div class="spinner-border" role="status">
                     <span class="sr-only"></span>
                   </div>
             </div>
-            <div class="col-6">
+            <div class="col-2">
                 <button id="back-to-orders" type="button" class="btn btn-primary mt-3">Back to orders</button>
             </div>
         </div>
-        <div class="row">
-            <h3>Items</h3>
+        <div class="row my-4">
+            <h4 class="col-4">Cost: &nbsp;<span id="costText"><div class="spinner-border" role="status">
+                <span class="sr-only"></span>
+              </div></span></h4>
+            <h4 class="col-4">Shipping: &nbsp;<span id="shippingText"><div class="spinner-border" role="status">
+                <span class="sr-only"></span>
+              </div></span></h4>
+            <h4 class="col-4">Misc expenses: &nbsp;<span id="miscExpensesText"><div class="spinner-border" role="status">
+                <span class="sr-only"></span>
+              </div></span></h4>
+        </div>
+        <div class="row my-3">
+            <h4 class="col-6">Revenue: &nbsp;<span id="revenueText"><div class="spinner-border" role="status">
+                <span class="sr-only"></span>
+              </div></span></h4>
+            <h4 class="col-6">Profit: &nbsp;<span id="profitText"><div class="spinner-border" role="status">
+                <span class="sr-only"></span>
+              </div></span></h4>
         </div>
         <div class="row">
                 <div class="col-2 p-0 d-flex justify-content-center"><p>Name</p></div>

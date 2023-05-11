@@ -210,7 +210,6 @@ const populateDashboard = async () => {
     })
 
     let totalProfit = await getTotalProfit()
-    console.log(totalProfit)
     $('#profitSpan').html(`$${totalProfit}`)
     $('#profitSpan').css('color', ((totalProfit > 0) ? 'green' : 'red'))
 }

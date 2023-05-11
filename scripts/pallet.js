@@ -88,8 +88,27 @@ const getPallet = async (palletId) => {
     return data
 }
 
+const getPalletShippingCost = async (palletId) => {
+    const request = await fetch(`https://palletsapi.onrender.com/pallets/shipping/${palletId}`)
+    const data = await request.json()
+    return data
+}
+
+const getPalletMiscExpenses = async (palletId) => {
+    const request = await fetch(`https://palletsapi.onrender.com/pallets/miscExpenses/${palletId}`)
+    const data = await request.json()
+    return data
+}
+
+const getPalletNumbers = async (palletId) => {
+    const request = await fetch(`https://palletsapi.onrender.com/pallets/numbers/${palletId}`)
+    const data = await request.json()
+    return data
+}
+
 async function populatePage() {
     let itemList = ''
+    let palletNumbers = await getPalletNumbers(palletId)
     let palletInfo = await getPallet(palletId)
     let items = await itemsInPallet(palletId)
     $('#palletTitle').html(`<h1>${palletInfo.palletName}</h1>`)
@@ -109,6 +128,11 @@ async function populatePage() {
     $('.editItemBtn').click(function() {
         populateForm($(this).attr('data-itemId'))
     })
+    $('#costText').html(`$${palletNumbers.cost.toFixed(2)}`)
+    $('#shippingText').html(`$${palletNumbers.totalShippingCost.toFixed(2)}`)
+    $('#miscExpensesText').html(`$${palletNumbers.totalMiscExpenses.toFixed(2)}`)
+    $('#revenueText').html(`$${palletNumbers.revenue.toFixed(2)}`)
+    $('#profitText').html(`$${palletNumbers.profit.toFixed(2)}`)
 }
 
 async function populateFormDropdowns() { 
